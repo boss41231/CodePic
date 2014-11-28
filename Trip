@@ -1,0 +1,256 @@
+package com.example.aboutbangkok;
+
+import java.util.Calendar;
+
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewSwitcher;
+
+public class Code_Trip extends FragmentActivity {
+	
+	ViewSwitcher switcher;
+	int mYear,mMonth,mDay;
+	static final int DATE_DIALOG_ID = 0;
+	static final int DATE_DIALOG_END = 1;
+	String Data,Dataend;
+	
+	 ViewPager Tab;
+	 TabAdapterTrip TabAdapter;
+	 ActionBar actionBar;
+	
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.ui_trip);
+		
+		/*////////////////////////////////////////////////////////////////////////*/
+		
+		
+		  TabAdapter = new TabAdapterTrip(getSupportFragmentManager());
+	        Tab = (ViewPager)findViewById(R.id.pagertrip);
+	        Tab.setOnPageChangeListener(
+	                new ViewPager.SimpleOnPageChangeListener() {
+	                    @Override
+	                    public void onPageSelected(int position) {
+	                      actionBar = getActionBar();
+	                      actionBar.setSelectedNavigationItem(position);                    
+	                      }
+	                });
+	        Tab.setAdapter(TabAdapter);
+	        actionBar = getActionBar();
+	        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	        ActionBar.TabListener tabListener = new ActionBar.TabListener(){
+	  	      @Override
+	  	      public void onTabReselected(android.app.ActionBar.Tab tab,
+	  	          FragmentTransaction ft) {
+	  	    	  
+	  	      }
+	  	      @Override
+	  	       public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+	  	              Tab.setCurrentItem(tab.getPosition());
+	  	          }
+	  	      @Override
+	  	      public void onTabUnselected(android.app.ActionBar.Tab tab,
+	  	          FragmentTransaction ft) {
+	  	      }};
+	  		
+	  	      actionBar.addTab(actionBar.newTab().setText("Backpack").setTabListener(tabListener));
+	  	      actionBar.addTab(actionBar.newTab().setText("One Day Trip").setTabListener(tabListener));
+		
+		/*////////////////////////////////////////////////////////////////////////*/
+		/*//----- page1
+		btnbackpack2.setAlpha(0.5f);
+		btnData.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showDialog(DATE_DIALOG_ID);
+			}
+		});
+		
+		/*btnEndData.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showDialog(DATE_DIALOG_END);
+			}
+		});
+		
+		
+		final TextWatcher mTextEditorWatcher = new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				int a = s.length();
+				int b = 200-a;
+				txtCountNode.setText(String.valueOf(b));
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+				
+			}
+		};
+		
+		edtAddNote.addTextChangedListener(mTextEditorWatcher);
+		
+		btnSave.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(),Data+"---"+Dataend,Toast.LENGTH_SHORT).show();
+				edtnametrip.setText("");
+				edtnametrip.requestFocus();
+				edtAddNote.setText("");
+				Intent it = new Intent(getApplicationContext(),Code_Trip_Backpackone.class);
+				it.putExtra("Data",Data);
+				it.putExtra("Dataend",Dataend);
+				startActivity(it);
+			}
+		});
+		
+		final Calendar c = Calendar.getInstance();
+		mYear = c.get(Calendar.YEAR);
+		mMonth = c.get(Calendar.MONTH);
+		mDay = c.get(Calendar.DAY_OF_MONTH);
+		updateCurrentDate();
+		
+		final Calendar e = Calendar.getInstance();
+		mYear = e.get(Calendar.YEAR);
+		mMonth = e.get(Calendar.MONTH);
+		mDay = e.get(Calendar.DAY_OF_MONTH);
+		updateEndData();
+		
+		//------------------------------------------------------------------------------------------
+		
+		btnoneday.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				btnbackpack2.setAlpha(0.5f);
+				new AnimationUtils();
+				switcher.setAnimation(AnimationUtils.makeInAnimation(getBaseContext(),true));
+				switcher.showPrevious();
+				Toast.makeText(getApplicationContext(), "Oneday",Toast.LENGTH_SHORT).show();
+			}
+		});*/
+		//------------------------------------------------------------------------------------------
+		//----- page1
+		//------ page 2
+		
+		
+	/*	final TextWatcher mTextEditorWatcher2 = new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				int a = s.length();
+				int b = 200-a;
+				txtCountNote2.setText(String.valueOf(b));
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+				
+			}
+		};
+		
+		edtAddNote2.addTextChangedListener(mTextEditorWatcher2);
+		
+		btnbackpack2 = (Button)findViewById(R.id.btnbackpack2);
+		btnbackpack2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				btnoneday.setAlpha(0.5f);
+				new AnimationUtils();
+				switcher.setAnimation(AnimationUtils.makeInAnimation(getBaseContext(), true));
+				switcher.showNext();
+				Toast.makeText(getApplicationContext(), "Backpack",Toast.LENGTH_SHORT).show();
+			}
+		});*/
+		
+		
+		//------------------------------------------------------------------------------------------
+		
+	}//onCreate
+	
+	//----- page1 ------------------------------------------------------------------------------------------
+	/*protected Dialog onCreateDialog(int id){
+		switch (id) {
+		case DATE_DIALOG_ID:
+			return new DatePickerDialog(this,mDataSetLister,mYear,mMonth,mDay);
+		case DATE_DIALOG_END:
+			return new DatePickerDialog(this,EndSetLister,mYear,mMonth,mDay);
+		}
+		return null;
+	}*/
+	
+	/*private DatePickerDialog.OnDateSetListener mDataSetLister = new DatePickerDialog.OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			mYear = year;
+			mMonth = monthOfYear;
+			mDay = dayOfMonth;
+			updateCurrentDate();
+		}
+	};
+	
+	private DatePickerDialog.OnDateSetListener EndSetLister = new DatePickerDialog.OnDateSetListener() {
+		@Override
+		public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+			mYear = year;
+			mMonth = monthOfYear;
+			mDay = dayOfMonth;
+			updateEndData();
+		}
+	};*/
+	
+	/*private void updateCurrentDate(){
+		edtStartData.setText(new StringBuilder()
+								.append(mDay).append("-")
+								.append(mMonth+1).append("-")
+								.append(mYear).append(" "));
+		Data = String.valueOf(mDay)+"-"+String.valueOf(mMonth+1)+"-"+String.valueOf(mYear);
+	}
+	
+	private void updateEndData(){
+		edtEndDate.setText(new StringBuilder()
+								.append(mDay).append("-")
+								.append(mMonth+2).append("-")
+								.append(mYear));
+		Dataend = String.valueOf(mDay)+"-"+String.valueOf(mMonth+2)+"-"+String.valueOf(mYear);
+	}*/
+	
+
+	
+	
+	
+}
